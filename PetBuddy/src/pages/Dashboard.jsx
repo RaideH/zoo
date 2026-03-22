@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { usePets } from '../context/PetContext';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import AddPetModal from '../components/AddPetModal';
-import { useState } from 'react';
+import ActivityRing from '../components/ui/ActivityRing';
 
 /**
  * Dashboard Page
  */
 const Dashboard = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { pets, removePet, addPet } = usePets();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +40,7 @@ const Dashboard = () => {
           <p>Total Pets</p>
         </Card>
         <Card className="stat-card">
-          <h3>2</h3>
+          <h3>{pets.reduce((acc, pet) => acc + (pet.tasks?.filter(t => !t.completed).length || 0), 0)}</h3>
           <p>Upcoming Tasks</p>
         </Card>
       </section>
@@ -47,14 +48,20 @@ const Dashboard = () => {
       <section className="pet-section">
         <h2 className="section-title">Your Companions</h2>
         <div className="pet-grid">
-          {pets.map(pet => (
-            <Card key={pet.id} hoverEffect={true} className="pet-list-card">
+          {pets.map((pet, index) => (
+            <Card key={pet.id} hoverEffect={true} className={`pet-list-card stagger-${(index % 5) + 1}`}>
               <div className="pet-avatar">
                 {pet.type === 'Dog' ? '🐶' : '🐱'}
               </div>
-              <div className="pet-info">
+              <div className="pet-info" style={{ marginBottom: '10px' }}>
                 <h3>{pet.name}</h3>
                 <p>{pet.breed} • {pet.age} years old</p>
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <ActivityRing 
+                  progress={pet.tasks?.length > 0 ? (pet.tasks.filter(t => t.completed).length / pet.tasks.length) * 100 : 0} 
+                  label="Daily Care" 
+                />
               </div>
               <div className="pet-actions">
                 <Button variant="ghost" onClick={() => removePet(pet.id)}>Remove</Button>

@@ -21,12 +21,14 @@ export const PetProvider = ({ children }) => {
         { 
           id: '1', name: 'Buddy', type: 'Dog', breed: 'Golden Retriever', age: 3,
           healthLogs: [{ id: 'h1', date: '2024-03-15', type: 'Vaccine', note: 'Rabies booster' }],
-          tasks: [{ id: 't1', title: 'Morning Walk', time: '08:00', completed: false }]
+          tasks: [{ id: 't1', title: 'Morning Walk', time: '08:00', completed: false }],
+          weightLogs: [{ id: 'w1', date: '2024-03-01', weight: 28 }, { id: 'w2', date: '2024-03-15', weight: 28.5 }]
         },
         { 
           id: '2', name: 'Misty', type: 'Cat', breed: 'Persian', age: 2,
           healthLogs: [{ id: 'h2', date: '2024-02-10', type: 'Checkup', note: 'Healthy weight' }],
-          tasks: [{ id: 't2', title: 'Evening Feed', time: '19:00', completed: true }]
+          tasks: [{ id: 't2', title: 'Evening Feed', time: '19:00', completed: true }],
+          weightLogs: [{ id: 'w3', date: '2024-02-10', weight: 4.5 }]
         }
       ];
       setPets(initialPets);
@@ -40,7 +42,8 @@ export const PetProvider = ({ children }) => {
       ...pet, 
       id: Date.now().toString(),
       healthLogs: [],
-      tasks: []
+      tasks: [],
+      weightLogs: []
     };
     const newPets = [...pets, newPet];
     setPets(newPets);

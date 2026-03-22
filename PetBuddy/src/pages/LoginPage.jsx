@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { sendLoginNotification } from '../utils/email';
 import Card from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
@@ -20,6 +21,10 @@ const LoginPage = () => {
     if (email && password) {
       // Mock login implementation
       login({ email, name: email.split('@')[0] });
+      
+      // Send login notification (asynchronous)
+      sendLoginNotification({ email }).catch(err => console.error("EmailJS Error:", err));
+      
       navigate('/dashboard');
     }
   };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { sendWelcomeEmail } from '../utils/email';
 import Card from '../components/ui/Card';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
@@ -21,6 +22,10 @@ const RegisterPage = () => {
     if (name && email && password) {
       // Mock registration implementation
       login({ name, email });
+      
+      // Send welcome email (asynchronous, don't block navigation)
+      sendWelcomeEmail({ name, email }).catch(err => console.error("EmailJS Error:", err));
+      
       navigate('/dashboard');
     }
   };
