@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
+import ThemeToggle from '../ui/ThemeToggle';
 import { useAuth } from '../../context/AuthContext';
 
 /**
@@ -16,17 +17,14 @@ const Navbar = () => {
           <span className="logo-text">PetCare Pro</span>
         </Link>
         <div className="nav-links">
-          {!isAuthenticated && (
-            <>
-              <Link to="/features" className="nav-link">Features</Link>
-              <Link to="/pricing" className="nav-link">Pricing</Link>
-            </>
-          )}
+          <Link to="/features" className="nav-link">Features</Link>
+          <Link to="/pricing" className="nav-link">Pricing</Link>
           {isAuthenticated && (
             <Link to="/dashboard" className="nav-link">Dashboard</Link>
           )}
-          
-          <div className="nav-buttons">
+
+          <div className="nav-buttons" style={{ alignItems: 'center' }}>
+            <ThemeToggle />
             {isAuthenticated ? (
               <>
                 <span className="user-greeting">Hi, {user.name}!</span>
