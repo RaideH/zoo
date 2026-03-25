@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Card = ({ children, className = '', hoverEffect = false }) => {
   const classes = `card ${hoverEffect ? 'hover-card' : ''} ${className}`;

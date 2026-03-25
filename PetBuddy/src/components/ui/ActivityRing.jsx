@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const ActivityRing = ({ radius = 40, stroke = 8, progress = 0, color = 'var(--primary)', label }) => {
   const normalizedRadius = radius - stroke * 2;

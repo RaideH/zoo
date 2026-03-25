@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Input = ({ label, id, className = '', ...props }) => {
   return (

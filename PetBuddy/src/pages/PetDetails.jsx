@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePets } from '../context/PetContext';
 import Card from '../components/ui/Card';
@@ -86,7 +86,6 @@ const PetDetails = () => {
       />
 
       <div className="details-grid">
-        {}
         <section className="health-section">
           <Card>
             <div className="card-header">
@@ -97,7 +96,6 @@ const PetDetails = () => {
           </Card>
         </section>
 
-        {}
         <section className="tasks-section">
           <Card>
             <div className="card-header">
