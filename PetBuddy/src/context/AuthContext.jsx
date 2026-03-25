@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../utils/supabaseClient';
 
 const AuthContext = createContext();
 
@@ -8,44 +7,30 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    const savedUser = localStorage.getItem('petcare_user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+    setLoading(false);
   }, []);
 
   const signup = async (email, password, name) => {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { name }
-      }
-    });
-    if (error) throw error;
-    return data;
+    const newUser = { id: crypto.randomUUID(), email, user_metadata: { name } };
+    localStorage.setItem('petcare_user', JSON.stringify(newUser));
+    setUser(newUser);
+    return { user: newUser };
   };
 
   const login = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) throw error;
-    return data;
+    const newUser = { id: crypto.randomUUID(), email, user_metadata: { name: email.split('@')[0] } };
+    localStorage.setItem('petcare_user', JSON.stringify(newUser));
+    setUser(newUser);
+    return { user: newUser };
   };
 
   const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    localStorage.removeItem('petcare_user');
+    setUser(null);
   };
 
   return (
