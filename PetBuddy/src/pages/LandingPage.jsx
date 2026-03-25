@@ -3,14 +3,10 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 
-/**
- * Landing Page - The face of our app!
- * (Объяснение: Главная страница, которая должна впечатлить пользователя)
- */
 const LandingPage = () => {
   return (
-    <div className="landing-page">
-      {/* Hero Section */}
+    <div className="landing-page page-transition">
+      {}
       <section className="hero">
         <div className="container hero-container">
           <div className="hero-text">
@@ -48,7 +44,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Showcase */}
+      {}
       <section className="features bg-gray">
         <div className="container">
           <h2 className="section-title text-center">Everything You Need</h2>

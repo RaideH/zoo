@@ -3,10 +3,6 @@ import Card from './ui/Card';
 import Input from './ui/Input';
 import Button from './ui/Button';
 
-/**
- * AddLogModal component
- * (Объяснение: Всплывающее окно для добавления записи в историю здоровья)
- */
 const AddLogModal = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],

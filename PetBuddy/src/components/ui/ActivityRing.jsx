@@ -1,13 +1,9 @@
 import React from 'react';
 
-/**
- * ActivityRing
- * Display an Apple Watch-style circular progress indicator.
- */
 const ActivityRing = ({ radius = 40, stroke = 8, progress = 0, color = 'var(--primary)', label }) => {
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
-  // Ensure progress is bounded
+  
   const safeProgress = Math.min(Math.max(progress, 0), 100);
   const strokeDashoffset = circumference - (safeProgress / 100) * circumference;
 

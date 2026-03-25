@@ -1,10 +1,6 @@
 import React from 'react';
 import Card from '../components/ui/Card';
 
-/**
- * FeaturesPage
- * Showcases the grandiose features of the app (like dark mode, activity rings).
- */
 const FeaturesPage = () => {
     return (
         <div className="features-page">

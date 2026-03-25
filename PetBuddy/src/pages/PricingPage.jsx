@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import PaymentModal from '../components/PaymentModal';
 
 const PRICING_PLANS = [
   {
@@ -36,7 +37,7 @@ const PRICING_PLANS = [
   }
 ];
 
-const PricingCard = ({ plan }) => {
+const PricingCard = ({ plan, onSelect }) => {
   const cardStyle = {
     width: '350px',
     padding: '40px',
@@ -76,17 +77,27 @@ const PricingCard = ({ plan }) => {
       </ul>
       
       <div style={{ marginTop: 'auto' }}>
-        <Link to="/register">
-          <Button variant={plan.buttonVariant} style={{ width: '100%', justifyContent: 'center' }}>
-            {plan.buttonText}
-          </Button>
-        </Link>
+        <Button 
+          variant={plan.buttonVariant} 
+          style={{ width: '100%', justifyContent: 'center' }}
+          onClick={() => onSelect(plan)}
+        >
+          {plan.buttonText}
+        </Button>
       </div>
     </Card>
   );
 };
 
 const PricingPage = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+
+  const handleSelectPlan = (plan) => {
+    setSelectedPlan(plan);
+    setIsPaymentOpen(true);
+  };
+
   return (
     <div className="pricing-page">
       <div className="container" style={{ padding: '60px 20px', textAlign: 'center' }}>
@@ -99,9 +110,15 @@ const PricingPage = () => {
 
         <div style={{ display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' }}>
           {PRICING_PLANS.map(plan => (
-            <PricingCard key={plan.name} plan={plan} />
+            <PricingCard key={plan.name} plan={plan} onSelect={handleSelectPlan} />
           ))}
         </div>
+
+        <PaymentModal 
+          isOpen={isPaymentOpen} 
+          onClose={() => setIsPaymentOpen(false)} 
+          plan={selectedPlan}
+        />
       </div>
     </div>
   );

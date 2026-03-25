@@ -6,18 +6,17 @@ import Button from '../components/ui/Button';
 import AddLogModal from '../components/AddLogModal';
 import AddTaskModal from '../components/AddTaskModal';
 import WeightChart from '../components/WeightChart';
+import HealthTimeline from '../components/ui/HealthTimeline';
+import PetIDCardModal from '../components/PetIDCardModal';
 
-/**
- * PetDetails Page
- * (Объяснение: Детальная страница питомца. Здесь можно увидеть историю прививок и план ухода)
- */
 const PetDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { pets, updatePet } = usePets();
+  const { pets, addHealthLog, addTask, toggleTask, addWeightLog } = usePets();
   
   const [isLogModalOpen, setIsLogModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [isIDCardOpen, setIsIDCardOpen] = useState(false);
   const [newWeight, setNewWeight] = useState('');
 
   const pet = pets.find(p => p.id === id);
@@ -31,75 +30,74 @@ const PetDetails = () => {
     );
   }
 
-  const toggleTask = (taskId) => {
-    const newTasks = pet.tasks.map(t => 
-      t.id === taskId ? { ...t, completed: !t.completed } : t
-    );
-    updatePet(pet.id, { tasks: newTasks });
+  const handleToggleTask = (taskId) => {
+    const task = pet.tasks.find(t => t.id === taskId);
+    if (task) {
+      toggleTask(taskId, !task.completed);
+    }
   };
 
-  const addHealthLog = (log) => {
-    const newLogs = [...(pet.healthLogs || []), log];
-    updatePet(pet.id, { healthLogs: newLogs });
+  const handleAddHealthLog = (log) => {
+    addHealthLog(pet.id, log);
   };
 
-  const addTask = (task) => {
-    const newTasks = [...(pet.tasks || []), task];
-    updatePet(pet.id, { tasks: newTasks });
+  const handleAddTask = (task) => {
+    addTask(pet.id, task);
   };
 
-  const addWeightLog = (e) => {
+  const handleAddWeightLog = (e) => {
     e.preventDefault();
     if (!newWeight) return;
-    const newLogs = [...(pet.weightLogs || []), { id: Date.now().toString(), date: new Date().toISOString().split('T')[0], weight: parseFloat(newWeight) }];
-    updatePet(pet.id, { weightLogs: newLogs });
+    addWeightLog(pet.id, { date: new Date().toISOString().split('T')[0], weight: parseFloat(newWeight) });
     setNewWeight('');
   };
 
   return (
-    <div className="pet-details-page container">
-      <header className="details-header">
-        <Button variant="ghost" onClick={() => navigate('/dashboard')}>← Back</Button>
-        <div className="pet-main-info">
-          <h1>{pet.name} {pet.type === 'Dog' ? '🐶' : '🐱'}</h1>
-          <p>{pet.breed} • {pet.age} years old</p>
+    <div className="pet-details-page container page-transition">
+      <header className="details-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <Button variant="ghost" onClick={() => navigate('/dashboard')}>← Back</Button>
+          <div className="pet-main-info">
+            <h1>{pet.name} {pet.type === 'Dog' ? '🐶' : '🐱'}</h1>
+            <p>{pet.breed} • {pet.age} years old</p>
+          </div>
         </div>
+        <Button variant="outline" onClick={() => setIsIDCardOpen(true)} style={{ border: '2px solid var(--primary)', color: 'var(--primary)' }}>
+          🪪 View Pet ID
+        </Button>
       </header>
 
       <AddLogModal 
         isOpen={isLogModalOpen} 
         onClose={() => setIsLogModalOpen(false)} 
-        onAdd={addHealthLog}
+        onAdd={handleAddHealthLog}
       />
 
       <AddTaskModal 
         isOpen={isTaskModalOpen} 
         onClose={() => setIsTaskModalOpen(false)} 
-        onAdd={addTask}
+        onAdd={handleAddTask}
+      />
+
+      <PetIDCardModal 
+        isOpen={isIDCardOpen} 
+        onClose={() => setIsIDCardOpen(false)} 
+        pet={pet}
       />
 
       <div className="details-grid">
-        {/* Left Column: Health Logs */}
+        {}
         <section className="health-section">
           <Card>
             <div className="card-header">
-              <h3>💉 Health History</h3>
+              <h3>💉 Health Timeline</h3>
               <Button variant="ghost" size="sm" onClick={() => setIsLogModalOpen(true)}>+ Add Log</Button>
             </div>
-            <div className="log-list">
-              {pet.healthLogs?.map(log => (
-                <div key={log.id} className="log-item">
-                  <span className="log-date">{log.date}</span>
-                  <span className="log-type">{log.type}</span>
-                  <p className="log-note">{log.note}</p>
-                </div>
-              ))}
-              {pet.healthLogs?.length === 0 && <p className="empty-msg">No logs yet.</p>}
-            </div>
+            <HealthTimeline logs={pet.healthLogs} />
           </Card>
         </section>
 
-        {/* Right Column: Daily Tasks */}
+        {}
         <section className="tasks-section">
           <Card>
             <div className="card-header">
@@ -112,7 +110,7 @@ const PetDetails = () => {
                   <input 
                     type="checkbox" 
                     checked={task.completed} 
-                    onChange={() => toggleTask(task.id)}
+                    onChange={() => handleToggleTask(task.id)}
                   />
                   <div className="task-info">
                     <strong>{task.title}</strong>
@@ -130,7 +128,7 @@ const PetDetails = () => {
         <Card>
           <div className="card-header">
             <h3>📈 Weight Tracker</h3>
-            <form onSubmit={addWeightLog} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <form onSubmit={handleAddWeightLog} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
               <input 
                 type="number" 
                 step="0.1" 

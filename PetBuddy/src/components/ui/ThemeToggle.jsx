@@ -2,10 +2,6 @@ import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import Button from './Button';
 
-/**
- * ThemeToggle
- * Puts a premium switch to change dark/light mode.
- */
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 

@@ -7,9 +7,6 @@ import Button from '../components/ui/Button';
 import AddPetModal from '../components/AddPetModal';
 import ActivityRing from '../components/ui/ActivityRing';
 
-/**
- * Dashboard Page
- */
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -17,10 +14,10 @@ const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="dashboard-page container">
+    <div className="dashboard-page container page-transition">
       <header className="dashboard-header">
         <div className="header-info">
-          <h1>Welcome, {user?.name}! 👋</h1>
+          <h1>Welcome, {user?.user_metadata?.name || user?.email?.split('@')[0]}! 👋</h1>
           <p>Here is what's happening with your pets today.</p>
         </div>
         <Button onClick={() => setIsModalOpen(true)}>

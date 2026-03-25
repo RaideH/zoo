@@ -3,9 +3,6 @@ import Button from '../ui/Button';
 import ThemeToggle from '../ui/ThemeToggle';
 import { useAuth } from '../../context/AuthContext';
 
-/**
- * Navbar component for the public pages
- */
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
 
@@ -27,7 +24,7 @@ const Navbar = () => {
             <ThemeToggle />
             {isAuthenticated ? (
               <>
-                <span className="user-greeting">Hi, {user.name}!</span>
+                <span className="user-greeting">Hi, {user?.user_metadata?.name || user?.email?.split('@')[0]}!</span>
                 <Button variant="ghost" onClick={logout}>Logout</Button>
               </>
             ) : (

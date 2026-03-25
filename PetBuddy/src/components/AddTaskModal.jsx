@@ -3,10 +3,6 @@ import Card from './ui/Card';
 import Input from './ui/Input';
 import Button from './ui/Button';
 
-/**
- * AddTaskModal component
- * (Объяснение: Всплывающее окно для добавления задачи в ежедневный план)
- */
 const AddTaskModal = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState({
     title: '',

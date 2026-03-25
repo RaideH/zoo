@@ -3,10 +3,6 @@ import Card from './ui/Card';
 import Input from './ui/Input';
 import Button from './ui/Button';
 
-/**
- * AddPetModal component
- * (Объяснение: Всплывающее окно для добавления нового пушистого друга)
- */
 const AddPetModal = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState({
     name: '',

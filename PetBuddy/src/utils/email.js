@@ -1,26 +1,15 @@
 import emailjs from '@emailjs/browser';
 
-/**
- * Configure EmailJS with your keys.
- * Use the .env file to store your credentials securely.
- */
 const SERVICE_ID = import.meta.env.VITE_EMAIL_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAIL_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAIL_PUBLIC_KEY;
 
-/**
- * Initializes EmailJS with the public key.
- */
 export const initEmail = () => {
   if (PUBLIC_KEY) {
     emailjs.init(PUBLIC_KEY);
   }
 };
 
-/**
- * Sends a welcome email to the user upon registration and notifies admin.
- * @param {Object} userData - The user data (name, email).
- */
 export const sendWelcomeEmail = async (userData) => {
   try {
     const templateParams = {
@@ -39,10 +28,6 @@ export const sendWelcomeEmail = async (userData) => {
   }
 };
 
-/**
- * Sends a notification email to the user upon login.
- * @param {Object} userData - The user data (email).
- */
 export const sendLoginNotification = async (userData) => {
   try {
     const templateParams = {
