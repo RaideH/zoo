@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import PetDetails from './pages/PetDetails';
 import FeaturesPage from './pages/FeaturesPage';
 import PricingPage from './pages/PricingPage';
-
+import NotFoundPage from './pages/NotFoundPage';
 function App() {
   return (
     <Router>
@@ -24,6 +24,7 @@ function App() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/pet/:id" element={<PetDetails />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 
