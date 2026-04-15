@@ -13,7 +13,7 @@ const Footer = () => {
             </Link>
             <p>Elevating pet care through premium management tools and interactive health tracking.</p>
           </div>
-          
+
           <div className="link-group">
             <h4>Platform</h4>
             <Link to="/features">Features</Link>
@@ -28,12 +28,12 @@ const Footer = () => {
             <Link to="#">Contact Us</Link>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
             <p>&copy; 2024 PetCare Pro. All rights reserved.</p>
             <p style={{ fontWeight: '600', color: 'var(--primary-light)' }}>
-              Built with ❤️ by <span style={{ color: 'white', borderBottom: '1px solid var(--primary)' }}>[YOUR NAME HERE]</span>
+              Built with ❤️ by <span style={{ color: 'white', borderBottom: '1px solid var(--primary)' }}>Henry Karapetyan</span>
             </p>
           </div>
         </div>
