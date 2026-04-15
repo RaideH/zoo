@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="footer-brand">
             <Link to="/" className="nav-logo" style={{ color: 'white' }}>
               <span className="logo-icon">🐾</span>
-              <span className="logo-text">PetCare Pro</span>
+              <span className="logo-text">PetBuddy</span>
             </Link>
             <p>Elevating pet care through premium management tools and interactive health tracking.</p>
           </div>
@@ -31,7 +31,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-            <p>&copy; 2024 PetCare Pro. All rights reserved.</p>
+            <p>&copy; 2024 PetBuddy. All rights reserved.</p>
             <p style={{ fontWeight: '600', color: 'var(--primary-light)' }}>
               Built with ❤️ by <span style={{ color: 'white', borderBottom: '1px solid var(--primary)' }}>Henry Karapetyan</span>
             </p>

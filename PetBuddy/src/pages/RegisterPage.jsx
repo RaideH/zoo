@@ -36,7 +36,7 @@ const RegisterPage = () => {
   return (
     <div className="auth-page container">
       <Card className="auth-card">
-        <h2 className="text-center auth-title">Join PetCare Pro</h2>
+        <h2 className="text-center auth-title">Join PetBuddy</h2>
         <p className="text-center auth-subtitle">The best way to care for your companions</p>
         
         {error && <div style={{ color: 'var(--blood)', textAlign: 'center', marginBottom: '15px' }}>{error}</div>}

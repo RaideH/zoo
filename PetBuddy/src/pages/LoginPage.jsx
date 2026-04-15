@@ -36,7 +36,7 @@ const LoginPage = () => {
     <div className="auth-page container">
       <Card className="auth-card">
         <h2 className="text-center auth-title">Welcome Back</h2>
-        <p className="text-center auth-subtitle">Log in to your PetCare Pro account</p>
+        <p className="text-center auth-subtitle">Log in to your PetBuddy account</p>
         
         {error && <div style={{ color: 'var(--blood)', textAlign: 'center', marginBottom: '15px' }}>{error}</div>}
 

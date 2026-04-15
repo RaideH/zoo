@@ -1,6 +1,6 @@
-# PetCare Pro 🐾
+# PetBuddy 🐾
 
-Welcome to **PetCare Pro**, a premium, local-only pet management dashboard. It helps pet owners track health, scheduling, and growth with professional precision—all without needing a cloud backend!
+Welcome to **PetBuddy**, a premium, local-only pet management dashboard. It helps pet owners track health, scheduling, and growth with professional precision—all without needing a cloud backend!
 
 ## 🌟 Key Features
 - **Interactive Dashboard**: Real-time overview of all your companions.
@@ -33,4 +33,4 @@ npm run dev
 ```
 
 ---
-*PetCare Pro — Because your companions deserve the best.*
+*PetBuddy — Because your companions deserve the best.*

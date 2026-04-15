@@ -15,7 +15,7 @@ export const sendWelcomeEmail = async (userData) => {
     const templateParams = {
       user_name: userData.name,
       user_email: userData.email,
-      message: 'Welcome to PetCare Pro! We are excited to help you care for your companions.',
+      message: 'Welcome to PetBuddy! We are excited to help you care for your companions.',
       admin_note: `New user registered: ${userData.name} (${userData.email})`
     };
 

@@ -94,7 +94,7 @@ const PetIDCardModal = ({ isOpen, onClose, pet }) => {
             </div>
             <div style={{ textAlign: 'right' }}>
               <p style={{ fontSize: '0.6rem', color: 'var(--text-muted)', margin: 0, textTransform: 'uppercase' }}>Issue Authority</p>
-              <p style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-dark)' }}>PETCARE PRO GLOBAL</p>
+              <p style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-dark)' }}>PETBUDDY GLOBAL</p>
               <div style={{ marginTop: '5px', height: '20px' }}>
                  {}
                  <div style={{ display: 'flex', gap: '1px', height: '100%', justifyContent: 'flex-end', opacity: 0.3 }}>

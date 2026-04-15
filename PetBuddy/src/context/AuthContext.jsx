@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('petcare_user');
+    const savedUser = localStorage.getItem('petbuddy_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -16,20 +16,20 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email, password, name) => {
     const newUser = { id: crypto.randomUUID(), email, user_metadata: { name } };
-    localStorage.setItem('petcare_user', JSON.stringify(newUser));
+    localStorage.setItem('petbuddy_user', JSON.stringify(newUser));
     setUser(newUser);
     return { user: newUser };
   };
 
   const login = async (email, password) => {
     const newUser = { id: crypto.randomUUID(), email, user_metadata: { name: email.split('@')[0] } };
-    localStorage.setItem('petcare_user', JSON.stringify(newUser));
+    localStorage.setItem('petbuddy_user', JSON.stringify(newUser));
     setUser(newUser);
     return { user: newUser };
   };
 
   const logout = async () => {
-    localStorage.removeItem('petcare_user');
+    localStorage.removeItem('petbuddy_user');
     setUser(null);
   };
 

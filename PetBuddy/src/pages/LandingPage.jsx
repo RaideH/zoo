@@ -14,7 +14,7 @@ const LandingPage = () => {
               <span className="text-gradient">With Professional Precision</span>
             </h1>
             <p className="hero-subtitle">
-              PetCare Pro is the ultimate dashboard for tracking health, dietary needs, and daily routines of your beloved companions.
+              PetBuddy is the ultimate dashboard for tracking health, dietary needs, and daily routines of your beloved companions.
             </p>
             <div className="hero-actions">
               <Link to="/register">

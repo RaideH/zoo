@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container nav-content">
         <Link to="/" className="nav-logo">
           <span className="logo-icon">🐾</span>
-          <span className="logo-text">PetCare Pro</span>
+          <span className="logo-text">PetBuddy</span>
         </Link>
         <div className="nav-links">
           <Link to="/features" className="nav-link">Features</Link>

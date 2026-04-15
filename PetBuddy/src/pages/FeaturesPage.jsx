@@ -8,7 +8,7 @@ const FeaturesPage = () => {
                     Everything You Need to <br/><span className="text-gradient">Care for Your Pet</span>
                 </h1>
                 <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 60px' }}>
-                    PetCare Pro offers a comprehensive suite of premium tools designed to make pet management effortless, interactive, and beautifully visual.
+                    PetBuddy offers a comprehensive suite of premium tools designed to make pet management effortless, interactive, and beautifully visual.
                 </p>
 
                 <div className="pet-grid">
